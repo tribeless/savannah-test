@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {useQuery} from "@apollo/client";
+import {useDispatch} from "react-redux";
+import * as actionTypes from "./redux/actions/actionTypes";
+import {ISSUES_QUERY} from "./graphql/queries/issues";
+import {AppHeader} from "./containers/Header/Header";
+import {Main} from "./containers/Main/Main";
 
 function App() {
+  // const dispatch = useDispatch();
+  // const [test,setTest] = React.useState("");
+  // const {data} = useQuery(ISSUES_QUERY,{
+  //   variables:{
+  //     owner:"octocat",
+  //     name:"Hello-World",
+  //     last:20
+  //   }
+  // });
+  // React.useEffect(()=>{
+  //   dispatch({type:actionTypes.HOLDER});
+  //   setTest("Just setting up");
+  // },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppHeader />
+      <Main />
+    </>
   );
 }
 
