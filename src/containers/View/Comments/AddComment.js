@@ -48,7 +48,7 @@ export const AddComment = () =>{
                                     <SavaButton
                                         text="Submit"
                                         variant="contained"
-                                        textVariant="BUTTON TEXT"
+                                        textVariant="caption text"
                                     />
                             </form>
                     </Grid>

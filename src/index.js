@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ApolloProvider} from "@apollo/client";
+// import {ApolloProvider} from "@apollo/client";
 import {Provider} from "react-redux";
 import store from "./redux/store";
-import client from "./apollo/client";
+// import client from "./apollo/client";
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  // <ApolloProvider client={client}>
     <Provider store={store}>
     <App />
     </Provider>
-  </ApolloProvider>,
+  // </ApolloProvider>
+  ,
   document.getElementById('root')
 );
 

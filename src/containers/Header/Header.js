@@ -39,7 +39,7 @@ export const AppHeader = ()=>{
                             <AccountCircle />
                         </IconButton>
                         <SavaButton 
-                            textVariant="BUTTON TEXT"
+                            textVariant="caption text"
                             text="Track Repo"
                             size="small"
                             variant="contained"

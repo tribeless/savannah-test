@@ -35,7 +35,7 @@ export const Filter = ()=>{
                 size="small"
                 text="filter"
                 click={handleClick}
-                textVariant="BUTTON TEXT"
+                textVariant = "caption text"
                 variant="contained"
             />
             <Menu

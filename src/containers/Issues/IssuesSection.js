@@ -1,7 +1,10 @@
 import React from "react";
+import {format} from "date-fns";
 import Grid from "@material-ui/core/Grid";
+import {useSelector} from "react-redux";
 import {makeStyles} from "@material-ui/core/styles";
 import {Typo} from '../../components/Typography';
+import {reduceString} from '../../utils/reduceString';
 
 const useStyles = makeStyles((theme)=>({
     root:{
@@ -13,11 +16,12 @@ const useStyles = makeStyles((theme)=>({
         alignItems:'center'
     },
     content:{
-        marginLeft: theme.spacing(4),
+        // marginLeft: theme.spacing(),
         backgroundColor:'#fff',
         borderRadius:'7px',
         boxShadow:'0 2px 5px #ccc',
-        marginTop:'20px'
+        marginTop:'20px',
+        width:'100%'
     },
     para:{
         margin:'0px'
@@ -27,97 +31,42 @@ const useStyles = makeStyles((theme)=>({
     }
 }));
 
-export const IssuesSection = ()=>{
+ const IssuesSection = ()=>{
+    const data = useSelector(state=>state.holderReducer.data);
+    console.log(data);
+    const name = useSelector(state=>state.repoReducer.name);
     const classes = useStyles();
-    const [text,setText]  = React.useState('');
     return (
         <div className="classes.root" >
             <Grid 
                 container 
                 spacing={2} 
                 direction="column"
-                justify="center"
+                justify="space-between"
                 alignItems="flex-start"
                 >
                 <Grid className={classes.repotext} item xs={12}>
                     <Typo 
-                        text="Hello World"
+                        text={name}
                         variant='h6'
                     />
                 </Grid>
-                <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                            <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                            <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                            <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                            <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                                        <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                                        <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                                        <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
-                                        <Grid item xs={12} className={classes.content} >
-                    <p className={classes.para}>test test test test test test test test test test</p>
-                    <p className={classes.para}>date here</p>
-                    <div className={classes.bottomContent}>
-                    <span>name</span>
-                    <span>status</span>
-                    </div>
-            </Grid>
+                {
+                    (data && data != null) && data.map(({node:{author:{login},state,createdAt,title,number}})=>(
+                    <Grid key={number} item xs={12} className={classes.content} >
+                        <p className={classes.para}>{title != null && reduceString(title)}</p>
+                        <p className={classes.para}>{format(new Date(createdAt), 'yyyy-MM-dd')}</p>
+                        <div className={classes.bottomContent}>
+                        <span>{login}</span>
+                        <span>{state}</span>
+                        </div>
+                    </Grid>
+                    ))
+                }
+                            
             </Grid>
         </div>
-    )
-}
+     )
+    }
+
+export default IssuesSection;

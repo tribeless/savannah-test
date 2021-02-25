@@ -1,8 +1,9 @@
 import {combineReducers} from "redux";
-import {holderReducer} from "./reducers";
+import {holderReducer,repoReducer} from "./reducers";
 
 const combinedReducers = combineReducers({
-    holderReducer
+    holderReducer,
+    repoReducer
 });
 
 export default combinedReducers;
