@@ -1,5 +1,6 @@
 import React,{lazy,Suspense} from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import {useSelector} from "react-redux";
 //import IssuesSection from "../Issues/IssuesSection";
 import {ViewSection} from "../View/ViewSection";
 const IssuesSection = lazy(() => import('../Issues/IssuesSection'));
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
    const Main = ()=>{
     const classes = useStyles();
+    const data = useSelector(state=>state.passDataReducer.passData);
     return (
         <div className={classes.root}>
             <section className={classes.sec}>
@@ -42,7 +44,14 @@ const useStyles = makeStyles((theme) => ({
                 </aside>
             </section>
             <section className={classes.view}>
-                <ViewSection />
+                {
+                    Object.keys(data).length === 0 ? (
+                        <p>Click on an issue to view</p>
+                    ):
+                    (
+                        <ViewSection />
+                    )
+                }
             </section>
         </div>
     )

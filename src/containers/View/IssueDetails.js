@@ -1,8 +1,11 @@
 import React from 'react';
+import {format} from "date-fns";
+import {useSelector} from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import {Typo} from "../../components/Typography";
 
 export const IssueDetails =()=>{
+    const data = useSelector(state=>state.passDataReducer.passData);
     return (
         <React.Fragment>
             <Grid 
@@ -12,10 +15,10 @@ export const IssueDetails =()=>{
                 alignItems="center"
             >
                 <Grid item>
-                    <Typo text='Opened:' variant="caption text" />
+                    <Typo text={`Opened:`} variant="caption text" />
                 </Grid>
                 <Grid item>
-                    <Typo text="2020-01-12" variant="caption text" />
+                    <Typo text={ format(new Date(data.node.createdAt), 'yyyy-MM-dd')} variant="caption text" />
                 </Grid>
             </Grid>
 
@@ -29,7 +32,7 @@ export const IssueDetails =()=>{
                     <Typo text='by:' variant="caption text" />
                 </Grid>
                 <Grid item>
-                    <Typo text="bKyole" variant="caption text" />
+                    <Typo text={ data.node.author.login } variant="caption text" />
                 </Grid>
             </Grid>
             <Grid 
@@ -42,7 +45,7 @@ export const IssueDetails =()=>{
                     <Typo text='Issue No:' variant="caption text" />
                 </Grid>
                 <Grid item>
-                    <Typo text="AKDF74" variant="caption text" />
+                    <Typo text={ data.node.number} variant="caption text" />
                 </Grid>
             </Grid>
         </React.Fragment>

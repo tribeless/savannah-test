@@ -1,9 +1,9 @@
 import React from "react";
 import InputBase from "@material-ui/core/InputBase";
 
-export const Input =({className,placeholder})=>{
+export const Input =({className,placeholder,onKeyUp,type,change,fieldName})=>{
 
     return (
-        <InputBase className={className} placeholder={placeholder} />
+        <InputBase type={type} name={fieldName} onChange={change} onKeyUp={onKeyUp} className={className} placeholder={placeholder} />
     )
 }

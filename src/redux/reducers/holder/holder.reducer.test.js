@@ -1,5 +1,5 @@
 import * as actionTypes from "../../actions/actionTypes";
-import holderReducer from "./holder";
+import holderReducer from "./holder.reducer";
 
 describe('holder reducer',()=>{
     it('should return initial state',()=>{

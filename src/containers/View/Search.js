@@ -1,10 +1,10 @@
-import React from 'react';
-import {Input} from '../../components/InputBase';
-import Paper from "@material-ui/core/Paper";
+import React,{useState} from 'react';
+import Grid from "@material-ui/core/Grid";
+import {useSelector,useDispatch} from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
-
+import {Input} from '../../components/InputBase';
+import {Typo} from '../../components/Typography';
+import passData from "../../redux/actions/passdata.action";
 
 const useStyles = makeStyles((theme)=>({
       root: {
@@ -13,19 +13,53 @@ const useStyles = makeStyles((theme)=>({
           alignItems: 'center',
           width: 200,
       },
-      iconButton: {
-          padding: 10,
+      result:{
+          minWidth:'300px',
+          zIndex:'1000'
       },
+      resultdisplay:{
+          backgroundColor:'#fff',
+          borderRadius:'7px',
+          boxShadow:'0 2px 5px #ccc',
+          cursor:'pointer'
+      }
 }));
 
 export const  Search = ()=>{
     const classes = useStyles();
+    const data = useSelector(state=>state.holderReducer.data);
+    const dispatch = useDispatch();
+    const [result,setResult] = useState([]);
+    const options = ['state', 'title'];
+    const handleKeyUp = (e)=>{
+        const result = data.filter(item=>{
+            return options.some(field=>field in item.node && item.node[field]===e.target.value)
+        });
+        result && setResult(result);
+    }
+    
+    const handleClick = data =>{
+        dispatch(passData(data));
+        setResult([]);
+    }
     return (
-        <Paper component="form" className={classes.root}>
-            <Input placeholder="search by status" />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
-                <SearchIcon />
-            </IconButton>
-        </Paper>
+        <>
+            <Input onKeyUp={handleKeyUp} placeholder="search by status" />
+            <Grid 
+                container
+                justify="space-between"
+                alignItems="flex-start"
+                direction="column"
+                className={classes.result}
+            >
+              {  
+               (Array.isArray(result) && result.length > 0) && result.map(item=>(
+                    <Grid onClick={()=>handleClick(item)} key={item.node.number} item className={classes.resultdisplay}>
+                        <Typo variant="caption text" text={item.node.title} />
+                    </Grid>
+                ))
+              }
+            </Grid>
+        </>
     )
 }
