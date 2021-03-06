@@ -3,9 +3,10 @@ import owner from "./owner.action";
 
 describe("owner action",()=>{
     it("should return owner name",()=>{
-        expect(owner('brian')).toEqual({
+        expect(owner('brian',"abc")).toEqual({
             type:actionTypes.OWNER,
-            payload:'brian'
+            payload:'brian',
+            id:"abc"
         });
     });
 });

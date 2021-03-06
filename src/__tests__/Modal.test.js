@@ -19,14 +19,5 @@ describe("repo modal component",()=>{
         expect(await screen.findByPlaceholderText("enter first filter value")).toBeInTheDocument();
         expect(await screen.findByPlaceholderText("enter second filter value")).toBeInTheDocument();
         
-
     });
 });
-
-        // user.type(screen.getByPlaceholderText("enter repo name"),data.repo);
-        // user.type(screen.getByPlaceholderText("enter repo owner"), data.owner);
-        // user.type(screen.getByPlaceholderText("enter first filter value"), data.first);
-        // user.type(screen.getByPlaceholderText("enter second filter value"), data.last);
-        // user.click(screen.getByTestId("submit"));
-
-        // await screen.findByText("Hello World");

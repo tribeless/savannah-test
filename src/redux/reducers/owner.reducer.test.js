@@ -4,18 +4,22 @@ import * as actionTypes from "../actions/owner.action";
 describe('owner reducer',()=>{
     it("should return initial state",()=>{
         expect(ownerReducer(undefined,{})).toEqual({
-            owner:""
+            owner:"",
+            id:""
         });
     });
 
     it("should return new state",()=>{
         expect(ownerReducer({
-            owner:"Brian"
+            owner:"Brian",
+            id:"abc"
         },{
             type:actionTypes.OWNER,
-            payload:"Brian"
+            payload:"Brian",
+            id:"abc"
         })).toEqual({
-            owner:"Brian"
+            owner:"Brian",
+            id:"abc"
         });
     });
     

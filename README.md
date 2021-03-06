@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tribeless/savannah-test.svg?branch=master)](https://travis-ci.com/tribeless/savannah-test)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # GitHub Issue Tracker
