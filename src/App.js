@@ -1,29 +1,27 @@
 import React from 'react';
-import {useQuery} from "@apollo/client";
-import {useDispatch} from "react-redux";
-import * as actionTypes from "./redux/actions/actionTypes";
-import {ISSUES_QUERY} from "./graphql/queries/issues";
+import {useDispatch,useSelector} from "react-redux";
 import {AppHeader} from "./containers/Header/Header";
-import {Main} from "./containers/Main/Main";
+import Main from "./containers/Main/Main";
+import RepoModal from "./containers/Header/Modal";
+import AddIssue from "./containers/Header/AddIssue";
+import openModal from "./redux/actions/modal.action";
 
 function App() {
-  // const dispatch = useDispatch();
-  // const [test,setTest] = React.useState("");
-  // const {data} = useQuery(ISSUES_QUERY,{
-  //   variables:{
-  //     owner:"octocat",
-  //     name:"Hello-World",
-  //     last:20
-  //   }
-  // });
-  // React.useEffect(()=>{
-  //   dispatch({type:actionTypes.HOLDER});
-  //   setTest("Just setting up");
-  // },[]);
+   const dispatch = useDispatch();
+   const data =  useSelector(state=>state.holderReducer.data);
+   React.useEffect(async()=>{
+        dispatch(openModal(true));
+   },[]);
 
   return (
     <>
       <AppHeader />
+      <RepoModal />
+     {
+       data.length !=0 && (
+          <AddIssue />
+       )
+     }
       <Main />
     </>
   );

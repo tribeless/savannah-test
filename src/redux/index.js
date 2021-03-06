@@ -1,8 +1,15 @@
 import {combineReducers} from "redux";
-import {holderReducer} from "./reducers";
+import {holderReducer,repoReducer,passDataReducer,modalReducer,repoModalReducer,ownerReducer,clickIndexReducer,addIssueReducer} from "./reducers";
 
 const combinedReducers = combineReducers({
-    holderReducer
+    holderReducer,
+    repoReducer,
+    passDataReducer,
+    modalReducer,
+    repoModalReducer,
+    ownerReducer,
+    clickIndexReducer,
+    addIssueReducer
 });
 
 export default combinedReducers;

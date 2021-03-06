@@ -10,7 +10,9 @@ import {CommentsSection} from "./Comments/CommentsSection";
 const useStyles = makeStyles((theme)=>({
     issueview:{
         marginTop:theme.spacing(2),
-        padding:'10px'
+        padding:'10px',
+        width:"100%",
+        marginBottom:theme.spacing(2)
     },
     divider:{
         width:'100%',
@@ -59,7 +61,7 @@ export const ViewSection = () => {
                 </Grid>
             </section>
             <Divider className={classes.divider} />
-            <section>
+            <section style={{width:"100%"}}>
                 <CommentsSection />
             </section>
         </Grid>
