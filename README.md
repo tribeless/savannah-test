@@ -30,11 +30,9 @@ The src/graphql contains all graphql mutations and queries\
 The src/utils contains reusable functionalities\
 The src/apollo contains configurations for working with apollo\
 The src/__tests__ contains the integration tests\
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
 ### `Testing`
-Uses React Testing Library To write tests
+Uses React Testing Library To write tests.\
+Uses travis-ci to run build and deploy app on master branch to netlify.
 
 ### `Api's Used`
 Consumes GitHub's v4 Graphql Api
