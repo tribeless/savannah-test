@@ -8,28 +8,28 @@ A react application that consumes github's v4 graphql api and is able to track i
 
 ### `Public Link`
 
-Link to live app [click here]()
+Link to live app [click here](https://github-issues-tracker.netlify.app/)
 ### `Resources(Adobe XD Design Files and Link)`
 
-[Adobe Xd]()
-### `Ci/CD`
+[Adobe Xd](https://drive.google.com/drive/folders/1W4kBuzqXQ8mxuUv2JxLUzuokl2zfJI--?usp=sharing)
+### `CI/CD`
 
 Uses travis-ci to run tests
 ## `FrontEnd Documentation and File Structure`
 
-Uses [React Framework](https://reactjs.org/)
-Uses [Redux State Management Library](https://redux.js.org/)
-Uses [Material-Ui](https://material-ui.com/) Design System
-Uses [graphql-request](https://www.npmjs.com/package/graphql-request) to make http requests to githubs graphql endpoint
+Uses [React Framework](https://reactjs.org/)\
+Uses [Redux State Management Library](https://redux.js.org/)\
+Uses [Material-Ui](https://material-ui.com/) Design System\
+Uses [graphql-request](https://www.npmjs.com/package/graphql-request) to make http requests to githubs graphql endpoint\
 ### `File Structure`
-Application code is found in src folder
-The src/redux contains redux code and its unit tests
-The src/components contains all reusable components
-The src/containers contains all components using redux
-The src/graphql contains all graphql mutations and queries
-The src/utils contains reusable functionalities
-The src/apollo contains configurations for working with apollo
-The src/__tests__ contains the integration tests
+Application code is found in src folder\
+The src/redux contains redux code and its unit tests\
+The src/components contains all reusable components\
+The src/containers contains all components using redux\
+The src/graphql contains all graphql mutations and queries\
+The src/utils contains reusable functionalities\
+The src/apollo contains configurations for working with apollo\
+The src/__tests__ contains the integration tests\
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
