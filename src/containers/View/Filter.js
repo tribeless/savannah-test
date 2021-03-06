@@ -1,5 +1,8 @@
 import React from "react";
 import {useSelector,useDispatch} from "react-redux";
+import ClearIcon from '@material-ui/icons/Clear';
+import Grid from "@material-ui/core/Grid";
+import {makeStyles} from "@material-ui/core/styles";
 import Menu from '@material-ui/core/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -8,8 +11,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {SavaButton} from "../../components/Button";
 import {holderAction} from "../../redux/actions/holder/holder.action";
 
+const useStyles = makeStyles((theme)=>({
+    filterContent:{
+        marginLeft:"50px",
+        outline: "1px solid #bebdbd",
+        backgroundColor:"white",
+        padding:".2rem"
+    }
+}))
+
 export const Filter = ()=>{
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const classes = useStyles();
     const [checked, setChecked] = React.useState([]);
     const [filteredData,setFilteredData] = React.useState([]);
     const dispatch = useDispatch();
@@ -21,7 +34,6 @@ export const Filter = ()=>{
       };
     const data = useSelector(state=>state.holderReducer.data);
     const handleToggle = (value) => () => {
-        //const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
         setFilteredData(data);
         if (checked.length === 0) {
@@ -38,23 +50,54 @@ export const Filter = ()=>{
             const promiseOne = new Promise(async(resolve,reject)=>{
                 resolve(dispatch(holderAction(filteredData)))
             });
-            const promiseTwo = new Promise((resolve,reject)=>{
-                resolve(dispatch(holderAction(data.filter(item => item.node.state === checked[0]))))
-            });
-            Promise.all([promiseOne,promiseTwo]);
+            Promise.all([promiseOne]).then(()=>{
+                setTimeout(()=>{
+                    dispatch(holderAction(data.filter(item => item.node.state === value)))
+                },2000);
+            })
         }
 
         setChecked(newChecked);
     };
+
+    const handleClearButton = ()=>{
+        setChecked([]);
+        dispatch(holderAction(filteredData));
+    }
     return (
         <div>
-            <SavaButton
-                size="small"
-                text="filter"
-                click={handleClick}
-                textVariant = "caption text"
-                variant="contained"
-            />
+            <Grid
+                container
+                justify="space-between"
+                alignItems="center"
+                direction="row"
+                wrap="nowrap"
+            >
+                <SavaButton
+                    size="small"
+                    text="filter"
+                    click={handleClick}
+                    textVariant = "caption text"
+                    variant="contained"
+                    className="filter-button"
+                />
+                <Grid 
+                    container
+                    justify="space-between"
+                    alignItems="center"
+                    direction="row"
+                    className={(checked.length != 0) && classes.filterContent}
+                >
+                    {
+                        checked != null && checked.map((value,index)=>(
+                            <Grid key={index} item>
+                                <span>{value}</span>
+                                <ClearIcon onClick={handleClearButton} fontSize="small" />
+                            </Grid>
+                        ))
+                    }
+                </Grid>
+            </Grid>
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}

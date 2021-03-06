@@ -4,6 +4,10 @@ export const ISSUES_QUERY = gql `
     query Issues($owner:String!,$name:String!,$last:Int!,$first:Int!){
         repository(owner: $owner, name: $name) {
             name
+            id
+            owner{
+                login
+            }
             issues(last: $last) {
                 edges {
                     node {

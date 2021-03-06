@@ -8,31 +8,27 @@ import {Input} from "../../components/InputBase";
 import repoModal from "../../redux/actions/repository.modal.action";
 import {holderAction} from "../../redux/actions/holder/holder.action";
 import repo_name from "../../redux/actions/repository.action";
+import owner from "../../redux/actions/owner.action";
 import client from "../../apollo/client";
 import {ISSUES_QUERY} from "../../graphql/queries/issues";
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
+const useStyles = makeStyles((theme)=>({
+      paper: {
+          position: 'absolute',
+          width: 400,
+          backgroundColor: "white",
+          border: '1px solid #000',
+          padding: theme.spacing(2, 4, 3),
+          top:"260px",
+          left:"460px"
+      }
+}));
 
 const RepoModal = ()=>{
+    const classes = useStyles();
     const open = useSelector(state=>state.modalReducer.open);
-    const variables = useSelector(state=>state.repoModalReducer.data);
-    const [modalStyle] = React.useState(getModalStyle);
     const dispatch = useDispatch();
     let formVal = {};
-    console.log(variables);
     const handleClose = ()=>{
         dispatch(openModal(false));
     }
@@ -49,19 +45,15 @@ const RepoModal = ()=>{
         const promiseOne = new Promise((resolve,reject)=>{
             resolve(dispatch(repoModal(formVal)));
         });
-        // const promiseTwo = new Promise(async(resolve,reject)=>{
-        //     const data = await client.request(ISSUES_QUERY,variables);
-        //     const {repository:{issues:{edges},name}} = data;
-        //     resolve(dispatch(holderAction(edges)));
-        //     resolve(dispatch(repo_name(name)));
-        // });
         Promise.all([promiseOne]).then(async()=>{
             formVal.last = parseInt(formVal.last,10);
             formVal.first = parseInt(formVal.first,10);
             const data = await client.request(ISSUES_QUERY,formVal);
-            const {repository:{issues:{edges},name}} = data;
+            const {repository:{issues:{edges},name,owner:{login},id}} = data;
+            dispatch(owner(login, id));
             dispatch(holderAction(edges));
             dispatch(repo_name(name));
+            
         })
         dispatch(openModal(false));
     }
@@ -77,6 +69,7 @@ const RepoModal = ()=>{
                 justify="space-between"
                 alignItems="flex-start"
                 direction="column"
+                className={classes.paper}
             >
                 <form onSubmit={handleSubmit} >
                     <Grid item>
@@ -85,6 +78,8 @@ const RepoModal = ()=>{
                             fieldName="name"
                             placeholder="enter repo name"
                             change={handleChange}
+                            className="inputs-outline"
+                            required={true}
                         />
                     </Grid>
                     <Grid item>
@@ -93,6 +88,8 @@ const RepoModal = ()=>{
                             fieldName="owner"
                             placeholder="enter repo owner"
                             change={handleChange}
+                            className="inputs-outline"
+                            required={true}
                         />
                     </Grid>
                     <Grid item>
@@ -101,6 +98,8 @@ const RepoModal = ()=>{
                             fieldName="first"
                             placeholder="enter first filter value"
                             change={handleChange}
+                            className="inputs-outline"
+                            required={true}
                         />
                     </Grid>
                     <Grid item>
@@ -109,11 +108,15 @@ const RepoModal = ()=>{
                             fieldName="last"
                             placeholder="enter second filter value"
                             change={handleChange}
+                            className="inputs-outline"
+                            required={true}
                         />
                     </Grid>
                     <Grid item>
                         <Input
                             type="submit"
+                            className="submit_btn"
+                            data-testid="submit"
                         />
                     </Grid>
                 </form>

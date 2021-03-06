@@ -6,6 +6,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Typo} from '../../components/Typography';
 import {reduceString} from '../../utils/reduceString';
 import passData from "../../redux/actions/passdata.action";
+import clickIndex from "../../redux/actions/clickIndex.action";
+import "../../index.css";
 
 const useStyles = makeStyles((theme)=>({
     root:{
@@ -17,7 +19,6 @@ const useStyles = makeStyles((theme)=>({
         alignItems:'center'
     },
     content:{
-        // marginLeft: theme.spacing(),
         backgroundColor:'#fff',
         borderRadius:'7px',
         boxShadow:'0 2px 5px #ccc',
@@ -26,9 +27,6 @@ const useStyles = makeStyles((theme)=>({
     },
     para:{
         margin:'0px'
-    },
-    repotext:{
-        marginLeft:theme.spacing(4)
     }
 }));
 
@@ -37,8 +35,10 @@ const useStyles = makeStyles((theme)=>({
     const name = useSelector(state=>state.repoReducer.name);
     const classes = useStyles();
     const dispatch = useDispatch();
-    const handleClick = data =>{
+    const handleClick = (data,index) =>{
         dispatch(passData(data));
+        dispatch(clickIndex(index));
+ 
     }
     return (
         <div className="classes.root" >
@@ -51,13 +51,13 @@ const useStyles = makeStyles((theme)=>({
                 >
                 <Grid className={classes.repotext} item xs={12}>
                     <Typo 
-                        text={name}
+                        text={name.toUpperCase()}
                         variant='h6'
                     />
                 </Grid>
                 {
-                    (data && data != null) && data.map((item)=>(
-                    <Grid onClick={()=>handleClick(item)} key={item.node.number} item xs={12} className={classes.content} >
+                    (data && data != null) && data.map((item,index)=>(
+                    <Grid onClick={()=>handleClick(item,index)} key={item.node.number} item xs={12} className={classes.content} >
                         <p className={classes.para}>{item.node.title != null && reduceString(item.node.title)}</p>
                         <p className={classes.para}>{format(new Date(item.node.createdAt), 'yyyy-MM-dd')}</p>
                         <div className={classes.bottomContent}>

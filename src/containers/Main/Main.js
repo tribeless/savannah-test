@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         marginLeft:theme.spacing(4),
         paddingTop:'20px',
         width:'70%'
+    },
+    issues:{
+        padding:'.8rem'
     }
 }));
 
@@ -37,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     return (
         <div className={classes.root}>
             <section className={classes.sec}>
-                <aside>
+                <aside className={classes.issues}>
                     <Suspense fallback={<p>Loading...</p>}>
                         <IssuesSection />
                     </Suspense>

@@ -11,13 +11,18 @@ const bigText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos 
 const useStyles = makeStyles((theme)=>({
     details:{
         marginTop:theme.spacing(2)
+    },
+    generalbody:{
+        backgroundColor:"#ffffff",
+        padding:".8rem",
+        width:"86%"
     }
 }));
 export const IssueView = ()=>{
     const classes = useStyles();
     const data = useSelector(state=>state.passDataReducer.passData);
     return (
-        <>
+        <div className={classes.generalbody}>
             <Typo text={ data.node.title} variant="h4" />
             <Typo text={Object.keys(data.node).includes('body') ? reduceString(data.node.body) : ""} variant="body1" />
             <Grid 
@@ -29,6 +34,6 @@ export const IssueView = ()=>{
             >
                 <IssueDetails />
             </Grid>
-        </>
+        </div>
     )
 }

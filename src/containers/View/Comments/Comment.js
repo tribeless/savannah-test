@@ -16,13 +16,22 @@ const useStyles = makeStyles((theme)=>({
     root:{
         width:'100%',
         marginTop:theme.spacing(2)
+    },
+    container:{
+        backgroundColor:"#white"
+    },
+    commentsContent:{
+        outline:"1px solid #3b206b",
+        marginBottom:theme.spacing(1),
+        backgroundColor:"#fff",
+        border:"none",
+        padding:".5rem"
     }
 }))
 
 export const Comment = ()=>{
     const classes = useStyles();
     const data = useSelector(state=>state.passDataReducer.passData);
-    console.log(data);
     return (
         <div className={classes.root}>
             <Accordion>
@@ -39,6 +48,7 @@ export const Comment = ()=>{
                         direction="column"
                         justify="flex-start"
                         alignItems="flex-start"
+                        className={classes.container}
                     >
                         {
                              (Array.isArray(data.node.comments.edges) && data.node.comments.edges)  && data.node.comments.edges.map(({node:{body,number,createdAt,author:{login}}})=>(
@@ -50,6 +60,7 @@ export const Comment = ()=>{
                                             direction="column"
                                             justify="flex-start"
                                             alignItems="flex-start"
+                                            className={classes.commentsContent}
                                         >
                                             <Grid item>
                                                 <Typo text={reduceString(body)} variant="body1" />

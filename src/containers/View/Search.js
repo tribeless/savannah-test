@@ -14,14 +14,21 @@ const useStyles = makeStyles((theme)=>({
           width: 200,
       },
       result:{
-          minWidth:'300px',
-          zIndex:'1000'
+          maxWidth:'300px',
+          zIndex:'1000',
+          position:"sticky",
+          backgroundColor: "#bdc3c7",
+          height:"130px",
+          overflowY:"auto",
+          marginTop:theme.spacing(1)
       },
       resultdisplay:{
           backgroundColor:'#fff',
-          borderRadius:'7px',
           boxShadow:'0 2px 5px #ccc',
-          cursor:'pointer'
+          cursor:'pointer',
+          padding:".4rem",
+          marginBottom:"4px",
+          width:"100%"
       }
 }));
 
@@ -44,13 +51,14 @@ export const  Search = ()=>{
     }
     return (
         <>
-            <Input onKeyUp={handleKeyUp} placeholder="search by status" />
+                <Input className='search-input' onKeyUp={handleKeyUp} placeholder="search by status or title" />
             <Grid 
                 container
-                justify="space-between"
+                justify="flex-start"
                 alignItems="flex-start"
                 direction="column"
-                className={classes.result}
+                wrap="nowrap"
+                className={result.length > 0 && classes.result}
             >
               {  
                (Array.isArray(result) && result.length > 0) && result.map(item=>(

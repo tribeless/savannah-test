@@ -6,7 +6,7 @@ import {Comment} from "./Comment";
 
 const useStyles = makeStyles((theme)=>({
     comments:{
-        width:'100%'
+        width:'90%'
     }
 }))
 
