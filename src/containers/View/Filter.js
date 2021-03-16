@@ -77,7 +77,7 @@ export const Filter = ()=>{
                     size="small"
                     text="filter"
                     click={handleClick}
-                    textVariant = "caption text"
+                    textVariant = "button"
                     variant="contained"
                     className="filter-button"
                 />

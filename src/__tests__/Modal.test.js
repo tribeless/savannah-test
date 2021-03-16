@@ -18,6 +18,17 @@ describe("repo modal component",()=>{
         expect(await screen.findByPlaceholderText("enter repo owner")).toBeInTheDocument();
         expect(await screen.findByPlaceholderText("enter first filter value")).toBeInTheDocument();
         expect(await screen.findByPlaceholderText("enter second filter value")).toBeInTheDocument();
+
+        //lets pass in data
+        user.type(screen.getByPlaceholderText("enter repo name"),"Hello-World");
+        user.type(screen.getByPlaceholderText("enter repo owner"), "octocat");
+        user.type(screen.getByPlaceholderText("enter first filter value"), "20");
+        user.type(screen.getByPlaceholderText("enter second filter value")," 20");
+        const submitbtn = screen.getByRole("button",{name:"Submit"});
+        user.click(submitbtn);
+        screen.debug();
+
+        expect(await screen.queryByPlaceholderText("enter repo name")).toBeFalsy();
         
     });
 });

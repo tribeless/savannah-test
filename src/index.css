@@ -35,21 +35,40 @@ body {
 }
 
 .inputs-outline{
-  outline: 1px solid #bebdbd;
+    outline: 1px solid black;
     width:100%;
     padding:.2rem;
     margin:.3rem;
+    margin-left:0;
 }
 .submit_btn{
   outline:1px solid black;
   text-align:center;
-  padding:.3rem;
+  padding:1rem;
+  border:0;
   margin-top:.3rem;
   margin-left :.25em;
+  background-color:#466CE5;
+  color:white;
+  font-size:1rem;
+}
+input[type="submit"]{
+  color:white;
+}
+.submit_btn2{
+    outline:1px solid black;
+    text-align:center;
+    padding:.3rem;
+    margin-top:.3rem;
+    margin-left :.25em;
+    background-color:#466CE5;
 }
 .active{
   outline: 1px solid #bebdbd;
 }
 .btntext{
 margin-left:-10px;
+}
+.top_color{
+  color:#234FDE;
 }

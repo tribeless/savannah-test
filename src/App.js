@@ -10,7 +10,7 @@ function App() {
    const dispatch = useDispatch();
    const data =  useSelector(state=>state.holderReducer.data);
    React.useEffect(async()=>{
-        dispatch(openModal(true));
+        (data.length === 0) && dispatch(openModal(true));
    },[]);
 
   return (

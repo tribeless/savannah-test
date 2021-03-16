@@ -18,7 +18,6 @@ import repo_name from "../../../redux/actions/repository.action";
 import passData from "../../../redux/actions/passdata.action";
 import {Input} from "../../../components/InputBase";
 
-const bigText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus exsit amet blandit leo lobortis eget.';
 const useStyles = makeStyles((theme)=>({
     root:{
         width:'100%'
@@ -32,13 +31,25 @@ const useStyles = makeStyles((theme)=>({
         width:"80px",
         textAlign:"center",
         fontWeight:"400",
-        outline: "1px solid #bebdbd"
+        outline: "1px solid #bebdbd",
+        border:"0",
+        outline:"none",
+        color:"white",
+        borderRadius:"2px",
+        textTransform:"uppercase",
+        backgroundColor:"#466CE5"
     },
     formikForm:{
         display:'flex',
         justifyContent:"space-between",
         alignItems:"flex-start",
         flexDirection:"column"
+    },
+    span:{
+        fontWeight:"500"
+    },
+    span2:{
+        color:"#707070"
     }
 }))
 export const AddComment = () =>{
@@ -62,7 +73,7 @@ export const AddComment = () =>{
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typo text="Add Comment" />
+                    <Typo className={classes.span} text="Add Comment" />
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid
@@ -71,7 +82,7 @@ export const AddComment = () =>{
                         alignItems="flex-start"
                         direction="column"
                     >
-                            <Typo text="Your Comment" variant="caption text" />
+                            <Typo className={classes.span2} text="Your Comment" variant="subtitle1" />
                             <Formik
                                 initialValues={{
                                     comment:'',
@@ -128,7 +139,7 @@ export const AddComment = () =>{
                                             className="inputs-outline"
                                             required={true}
                                         />
-                                        <button className={classes.submitButton} htmlType="submit">
+                                        <button className={classes.submitButton} htmltype="submit">
                                             Submit
                                         </button>
                                     </FormikForm>

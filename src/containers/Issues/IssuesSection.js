@@ -26,7 +26,17 @@ const useStyles = makeStyles((theme)=>({
         width:'100%'
     },
     para:{
-        margin:'0px'
+        margin:'0px',
+        fontSize:"15px",
+        fontWeight:"600"
+    },
+    para2:{
+        color: "#707070",
+        fontSize:"12px"
+    },
+    span:{
+        color:"#234FDE",
+        fontSize:"12px"
     }
 }));
 
@@ -58,11 +68,11 @@ const useStyles = makeStyles((theme)=>({
                 {
                     (data && data != null) && data.map((item,index)=>(
                     <Grid onClick={()=>handleClick(item,index)} key={item.node.number} item xs={12} className={classes.content} >
-                        <p className={classes.para}>{item.node.title != null && reduceString(item.node.title)}</p>
-                        <p className={classes.para}>{format(new Date(item.node.createdAt), 'yyyy-MM-dd')}</p>
+                        <p className={classes.para}>{item.node.title != null && reduceString(item.node.title.toUpperCase())}</p>
+                        <p className={classes.para2}>{format(new Date(item.node.createdAt), 'yyyy-MM-dd')}</p>
                         <div className={classes.bottomContent}>
-                        <span>{item.node.author.login}</span>
-                        <span>{item.node.state}</span>
+                        <span className={classes.span}>{item.node.author.login}</span>
+                        <span className={classes.span}>{item.node.state}</span>
                         </div>
                     </Grid>
                     ))

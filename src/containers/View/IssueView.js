@@ -16,6 +16,15 @@ const useStyles = makeStyles((theme)=>({
         backgroundColor:"#ffffff",
         padding:".8rem",
         width:"86%"
+    },
+    body:{
+        color:"#707070",
+        fontSize:"14px",
+        marginTop:".5rem"
+    },
+    title:{
+        fontSize:"17px",
+        fontWeight:"450"
     }
 }));
 export const IssueView = ()=>{
@@ -23,8 +32,8 @@ export const IssueView = ()=>{
     const data = useSelector(state=>state.passDataReducer.passData);
     return (
         <div className={classes.generalbody}>
-            <Typo text={ data.node.title} variant="h4" />
-            <Typo text={Object.keys(data.node).includes('body') ? reduceString(data.node.body) : ""} variant="body1" />
+            <Typo className={classes.title} text={ data.node.title.toUpperCase()} variant="h4" />
+            <Typo className={classes.body} text={Object.keys(data.node).includes('body') ? reduceString(data.node.body) : ""} variant="body1" />
             <Grid 
                 container
                 direction='column'

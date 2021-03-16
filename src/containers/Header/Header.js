@@ -61,18 +61,20 @@ export const AppHeader = ()=>{
                         >
                             <SavaButton 
                                 click={handleClick}
-                                textVariant="caption text"
+                                textVariant="button"
                                 text="Track Repo"
                                 size="small"
                                 variant="contained"
                                 className={classes.btn_text}
+                                textClassName="top_color"
                             />
                             <SavaButton
                                 click={handleAddIssue}
-                                textVariant="caption text"
+                                textVariant="button"
                                 text="Add Issue"
                                 size="small"
                                 variant="contained"
+                                textClassName="top_color"
                             />
                         </Grid>
                     </div>
