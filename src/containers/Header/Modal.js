@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme)=>({
 const RepoModal = ()=>{
     const classes = useStyles();
     const open = useSelector(state=>state.modalReducer.open);
+    const data = useSelector(state => state.holderReducer.data);
     const dispatch = useDispatch();
     let formVal = {};
     const handleClose = ()=>{
@@ -63,6 +64,7 @@ const RepoModal = ()=>{
             onClose={handleClose}
             aria-labelledby="repo modal"
             aria-describedby="repo-modal-description"
+            disableBackdropClick={(data.length ===0) && true}
         >
             <Grid
                 container
@@ -113,11 +115,18 @@ const RepoModal = ()=>{
                         />
                     </Grid>
                     <Grid item>
-                        <Input
+                        {/* <Input
                             type="submit"
                             className="submit_btn"
                             data-testid="submit"
-                        />
+                            alt="SUBMIT"
+                        /> */}
+                         <button
+                            type="submit"
+                            htmltype="submit"
+                            className="submit_btn"
+                            data-testid="submit"
+                        >Submit</button>
                     </Grid>
                 </form>
             </Grid>

@@ -93,7 +93,7 @@ const AddIssue = ()=>{
                     <Grid item>
                         <Input
                             type="submit"
-                            className="submit_btn"
+                            className="submit_btn2"
                             data-testid="submit"
                         />
                     </Grid>

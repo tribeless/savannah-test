@@ -26,6 +26,17 @@ const useStyles = makeStyles((theme)=>({
         backgroundColor:"#fff",
         border:"none",
         padding:".5rem"
+    },
+    span:{
+        color:"#234FDE",
+        fontSize:"14px"
+    },
+    span2:{
+        color:"#707070",
+        fontSize:"12px"
+    },
+    typo:{
+        fontWeight:"500"
     }
 }))
 
@@ -40,7 +51,7 @@ export const Comment = ()=>{
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Typo text="Comments" />
+                    <Typo className={classes.typo} text="Comments" />
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid 
@@ -63,7 +74,7 @@ export const Comment = ()=>{
                                             className={classes.commentsContent}
                                         >
                                             <Grid item>
-                                                <Typo text={reduceString(body)} variant="body1" />
+                                                <Typo className={classes.span} text={reduceString(body)} variant="body1" />
                                             </Grid>
                                             <Grid 
                                                 container
@@ -72,10 +83,10 @@ export const Comment = ()=>{
                                                 alignItems="center"
                                             >
                                                 <Grid item>
-                                                    <Typo text={`by:${login}`} variant="caption text" />
+                                                    <Typo className={classes.span2} text={`by:${login}`} variant="subtitle1" />
                                                 </Grid>
                                                 <Grid item>
-                                                    <Typo text={format(new Date(createdAt), 'yyyy-MM-dd')} variant="caption text" />
+                                                    <Typo className={classes.span2} text={format(new Date(createdAt), 'yyyy-MM-dd')} variant="subtitle1" />
                                                 </Grid>
                                             </Grid>
                                     </Grid>
