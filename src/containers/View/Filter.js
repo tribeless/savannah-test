@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme)=>({
         outline: "1px solid #bebdbd",
         backgroundColor:"white",
         padding:".2rem"
+    },
+    iconHeight:{
+        height:"20px"
     }
 }))
 
@@ -90,10 +93,14 @@ export const Filter = ()=>{
                 >
                     {
                         checked != null && checked.map((value,index)=>(
-                            <Grid key={index} item>
+                        <React.Fragment key={index}>
+                            <Grid item>
                                 <span>{value}</span>
+                            </Grid>
+                            <Grid item className={classes.iconHeight}>
                                 <ClearIcon onClick={handleClearButton} fontSize="small" />
                             </Grid>
+                        </React.Fragment>
                         ))
                     }
                 </Grid>

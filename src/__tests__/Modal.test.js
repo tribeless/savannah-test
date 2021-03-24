@@ -26,7 +26,6 @@ describe("repo modal component",()=>{
         user.type(screen.getByPlaceholderText("enter second filter value")," 20");
         const submitbtn = screen.getByRole("button",{name:"Submit"});
         user.click(submitbtn);
-        screen.debug();
 
         expect(await screen.queryByPlaceholderText("enter repo name")).toBeFalsy();
         

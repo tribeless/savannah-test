@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme)=>({
           zIndex:'1000',
           position:"sticky",
           backgroundColor: "#bdc3c7",
-          height:"130px",
+          height:"150px",
           overflowY:"auto",
           marginTop:theme.spacing(1)
       },
